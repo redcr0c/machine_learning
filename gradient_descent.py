@@ -11,23 +11,22 @@ dataset = {
     2.37: 24,
 }
 
-# Initialize parameters
+# Initialize weight, bias and learning rate
 weight = 0
 bias = 0
 learning_rate = 0.01
 
-# Convergence criteria
+# Initialize convergence criteria, previous MSE, and maximum iterations
 convergence_threshold = 0.0000001  # Stop when MSE change is less than this
-max_epochs = 50000  # Safety limit to prevent infinite loops
 previous_mse = float('inf')
+max_iterations = 50000  # prevents infinite loops
 
-print("Training with gradient descent (stops when converged):")
-for epoch in range(max_epochs):
+for epoch in range(max_iterations):
     total_error = 0
     weight_gradient = 0
     bias_gradient = 0
     
-    # Calculate gradients and error using CURRENT parameters
+    # Calculate gradients and error using current parameters
     for x, y_actual in dataset.items():
         error = bias + weight * x - y_actual
         total_error += error ** 2
@@ -43,22 +42,22 @@ for epoch in range(max_epochs):
     
     # Check for convergence
     if abs(previous_mse - current_mse) < convergence_threshold:
-        print(f"\nConverged after {epoch+1} epochs!")
+        print(f"\nConverged after {epoch+1} iterations!")
         break
     
     previous_mse = current_mse
     
-    # Update parameters for NEXT epoch
+    # Update parameters for next epoch
     weight -= learning_rate * weight_gradient / len(dataset)
     bias -= learning_rate * bias_gradient / len(dataset)
     
     # Safety check for NaN values
-    if any(val != val for val in [weight, bias, current_mse]):  # Check for NaN
+    if any(val != val for val in [weight, bias, current_mse]):
         print("NaN values detected - stopping training")
         break
 
 else:
-    print(f"\nReached maximum epochs ({max_epochs}) without full convergence")
+    print(f"\nReached maximum iterations ({max_iterations}) without full convergence")
 
 # Plotting with regression line
 x_values = list(dataset.keys())
