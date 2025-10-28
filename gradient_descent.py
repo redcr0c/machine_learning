@@ -21,7 +21,7 @@ convergence_threshold = 0.0000001  # Stop when MSE change is less than this
 previous_mse = float('inf')
 max_iterations = 50000  # prevents infinite loops
 
-for epoch in range(max_iterations):
+for iteration in range(max_iterations):
     total_error = 0
     weight_gradient = 0
     bias_gradient = 0
@@ -37,12 +37,12 @@ for epoch in range(max_iterations):
     # Calculate current MSE
     current_mse = total_error / len(dataset)
     
-    # Print current epoch results
-    print(f"Epoch {epoch+1}: weight={weight:.2f}, bias={bias:.2f}, MSE={current_mse:.2f}")
+    # Print current iteration results
+    print(f"Iteration {iteration+1}: weight={weight:.2f}, bias={bias:.2f}, MSE={current_mse:.2f}")
     
     # Check for convergence
     if abs(previous_mse - current_mse) < convergence_threshold:
-        print(f"\nConverged after {epoch+1} iterations!")
+        print(f"\nConverged after {iteration+1} iterations!")
         break
     
     previous_mse = current_mse
