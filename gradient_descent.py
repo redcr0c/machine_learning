@@ -14,7 +14,7 @@ dataset = {
 # Initialize weight, bias and learning rate
 weight = 0
 bias = 0
-learning_rate = 0.01
+learning_rate = 0.06958255
 
 # Initialize convergence criteria, previous MSE, and maximum iterations
 convergence_threshold = 0.0000001  # Stop when MSE change is less than this
