@@ -13,7 +13,7 @@ dataset = {
 
 def train_with_learning_rate(learning_rate, dataset, max_iterations=50000):
     """
-    Train the model with a given learning rate and return the number of iterations to converge
+    Train the model with given learning rate and return number of iterations to converge
     """
     weight = 0
     bias = 0
